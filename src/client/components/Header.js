@@ -11,7 +11,7 @@ const HeaderWrapper = styled.header({
 	gridTemplateColumns: '60px 100px 1fr',
 	gridTemplateRows: '60px 1fr 30px',
 	background: `url(${background})`,
-	backgroundColor: 'rgba(133, 0, 0, 0.1)',
+	backgroundColor: 'rgba(133, 0, 0, 0.55)',
 	backgroundBlendMode: 'overlay',
 	backgroundRepeat: 'no-repeat',
 	backgroundSize: 'cover',
