@@ -5,7 +5,8 @@ import { Icon } from '@iconify/react';
 import calendarMonth from '@iconify/icons-mdi/calendar-month';
 
 const DateFormat = styled.span({ 
-	fontWeight: 100,
+	fontWeight: 300,
+	letterSpacing: '2px',
 	color: '#FFF', 
 	marginLeft: '10px'
 })

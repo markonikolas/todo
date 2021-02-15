@@ -8,11 +8,14 @@ const QuoteWrapper = styled.p({
 	maxWidth: '225px',
 	gridColumn: 'span 2 / -1',
 	gridRow: '-1 / 1',
-	justifySelf: 'right'
+	justifySelf: 'right',
+	fontWeight: 300,
+	fontSize: '17px'
 })
 
 const Author = styled.span`
 	display: block;
+	font-weight: 600;
 	margin-top: 10px;
 	font-style: italic;
 	&::before { content: '— '}
