@@ -7,7 +7,7 @@ module.exports = env => {
 	const isAnalize = !!env.analyze;
 
 	// Helpers
-	const Ternary = require( './helper/Ternary' );
+	const Ternary = require( './webpack/class/Ternary' );
 
 	// Modes
 	// Returns first parameter if in n mode, second otherwise
@@ -15,7 +15,7 @@ module.exports = env => {
 	const inWatchMode = new Ternary( isWatching );
 
 	// Constants
-	const APP_DIR = './src';
+	const APP_DIR = './src/client';
 	const BUILD_DIR = 'public';
 	const BUILD_ASSETS_DIR = 'static';
 	const ENTRY_FILENAME = 'index';
@@ -52,9 +52,6 @@ module.exports = env => {
 		compress: true,
 		hot: true,
 		watchContentBase: true
-		// open: {
-		// 	target: 'navigator'
-		// },
 	};
 	const watchOptions = {
 		ignored: /node_modules/,
@@ -69,7 +66,7 @@ module.exports = env => {
 	const modules = {
 		rules: [
 			{
-				test: /\.js$/i,
+				test: /\.jsx?$/i,
 				exclude: /node_modules/,
 				use: 'babel-loader'
 			},
@@ -106,13 +103,6 @@ module.exports = env => {
 				options: {
 					name: `${BUILD_ASSETS_DIR}/images/${assetFilename}.[ext]`,
 					limit: inWatchMode.check( 10240, false )
-				}
-			},
-			{
-				test: /\.pug$/i,
-				loader: 'pug-loader',
-				options: {
-					esModule: false
 				}
 			}
 		]
@@ -166,7 +156,7 @@ module.exports = env => {
 			verbose: true
 		} ),
 		new HTMLWebpackPlugin( {
-			template: 'src/templates/template.pug',
+			template: `${APP_DIR}/template.html`,
 			filename: 'index.html',
 			showErrors: isDev,
 			minify: !isDev,
@@ -185,7 +175,7 @@ module.exports = env => {
 				proxy: 'http://localhost:8080/',
 
 				files: [
-					'**/template.pug', // reload on html change
+					'**/template.html', // reload on html change
 					{
 						match: '**/*.js',
 						options: {

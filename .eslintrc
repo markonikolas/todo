@@ -7,6 +7,7 @@
     },
 
     "rules": {
+        "parser": "babel-eslint",
         "indent": ["error", "tab"],
         "no-mixed-spaces-and-tabs": 2,
         "no-tabs": 0,
@@ -23,6 +24,13 @@
             "single",
             { "allowTemplateLiterals": true, "avoidEscape": true }
         ],
+        "parserOptions": {
+            "ecmaVersion": 2018,
+            "ecmaFeatures": {
+                "experimentalObjectRestSpread": true
+            }
+        },
+
         "space-in-parens": ["error", "always", { "exceptions": ["empty"] }],
         "arrow-parens": ["error", "as-needed"],
         "array-bracket-spacing": ["error", "always"],

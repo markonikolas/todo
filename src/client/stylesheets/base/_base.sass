@@ -1,0 +1,17 @@
+html
+	box-sizing: border-box
+	height: 100%
+	font-family: 'Open Sans', sans-serif
+	
+*,
+*::before,
+*::after
+	box-sizing: inherit
+
+a
+	color: $brand-color
+	text-decoration: none
+
+	+on-event
+		color: $text-color
+		text-decoration: underline
