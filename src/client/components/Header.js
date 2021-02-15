@@ -10,15 +10,19 @@ const HeaderWrapper = styled.header({
 	display: 'grid',
 	gridTemplateColumns: '60px 100px 1fr',
 	gridTemplateRows: '60px 1fr 30px',
+	height: '190px',
+	padding: '60px 40px 0',
+	position: 'fixed',
+	left: 0,
+	top: 0,
+	width: '100vw',
+	
+	// in figma, `overlay` and `hard-light` give the same effect
 	background: `url(${background})`,
 	backgroundColor: 'rgba(133, 0, 0, 0.55)',
-
-	// in figma, `overlay` and `hard-light` give the same effect
 	backgroundBlendMode: 'overlay',
 	backgroundRepeat: 'no-repeat',
 	backgroundSize: 'cover',
-	height: '190px',
-	padding: '60px 40px 0'
 })
 
 
