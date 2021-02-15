@@ -12,6 +12,8 @@ const HeaderWrapper = styled.header({
 	gridTemplateRows: '60px 1fr 30px',
 	background: `url(${background})`,
 	backgroundColor: 'rgba(133, 0, 0, 0.55)',
+
+	// in figma, `overlay` and `hard-light` give the same effect
 	backgroundBlendMode: 'overlay',
 	backgroundRepeat: 'no-repeat',
 	backgroundSize: 'cover',
@@ -21,11 +23,12 @@ const HeaderWrapper = styled.header({
 
 
 const Header = () => {
-	return ( <HeaderWrapper>
-		<Button />
-		<Quote />
-		<TodayDate />
-	</HeaderWrapper> );
-}
+	return ( 
+		<HeaderWrapper>
+			<Button />
+			<Quote />
+			<TodayDate />
+		</HeaderWrapper> );
+	}
  
 export default Header;
