@@ -8,7 +8,7 @@ const TaskWrapper = styled.section({
 	background: '#FFFFFF',
 	boxShadow: '1px 2px 8px rgba(192, 192, 192, 0.5)',
 	display: 'flex',
-	padding: '15px 20px'
+	paddingRight: '20px'
 })
 
 const TaskName = styled.label({ 
@@ -16,15 +16,18 @@ const TaskName = styled.label({
 	fontSize: '16px',
 	lineHeight: '22px',
 	color: '#8D8D8D',
-	flexGrow: 1
+	flexGrow: 1,
+	cursor: 'pointer',
+	padding: '15px 20px',
+	userSelect: 'none'
 })
 
-const Task = () => {
+const Task = ({ inputNo }) => {
 	return ( 
 		<TaskWrapper>
-			<TaskName>Lorem, ipsum dolor.</TaskName>
-			{/* checkbox, create custom checkbox and hide other one*/}
-			<input type="checkbox" name="check" id="task-01"/>
+			<TaskName htmlFor={`task-${inputNo}`}>Lorem, ipsum dolor.</TaskName>
+			{/* checkbox, create custom checkbox and hide other one*/} 
+			<input type="checkbox" name="check" id={`task-${inputNo}`}/>
 		</TaskWrapper>
 	 );
 }

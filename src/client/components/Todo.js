@@ -17,20 +17,23 @@ const Tasks = styled.article({
 	'overflow-y': 'scroll'
 })
 
+const allTasks = [];
+
+for(let i = 0; i <= 10; i++) {
+	allTasks.push(Task)
+}
+
 class Todo extends Component {
 	render() { 
 		return (
 		<Fragment>
 			<Header />
 			<Tasks>
-				<Task />
-				<Task />
-				<Task />
-				<Task />
-				<Task />
-				<Task />
-				<Task />
-				<Task />
+				{
+					allTasks.map((Task, i) => {
+						return <Task key={i} inputNo={i} />
+					})
+				}
 			</Tasks>
 		</Fragment>
 		)
