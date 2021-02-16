@@ -8,7 +8,8 @@ const DateFormat = styled.span({
 	fontWeight: 300,
 	letterSpacing: '2px',
 	color: '#FFF', 
-	marginLeft: '10px'
+	marginLeft: '10px',
+	fontSize: '15px'
 })
 
 const DateWrapper = styled.div({ 

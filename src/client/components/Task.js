@@ -33,7 +33,7 @@ const TaskName = styled.label`
 		border: 1px solid #c4c4c4;
 		border-radius: 5px;
 		top: 50%;
-		transform: translateY(-50%)
+		transform: translateY(-50%);
 	}
 `
 
