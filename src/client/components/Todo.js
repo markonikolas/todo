@@ -19,11 +19,17 @@ const Tasks = styled.article({
 
 const allTasks = [];
 
-for(let i = 0; i <= 10; i++) {
+for(let i = 0; i <= 5; i++) {
 	allTasks.push(Task)
 }
 
+
 class Todo extends Component {
+	state = {
+		tasks: [],
+		editing: false,
+		currentTask: ''
+	}
 	render() { 
 		return (
 		<Fragment>
