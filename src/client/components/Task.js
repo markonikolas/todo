@@ -41,6 +41,12 @@ const Checkmark = styled.input`
 	&:checked ~ label::after {
 		background: url(${check}) no-repeat center center / contain;
 	}
+
+	&:checked ~ label {
+		text-decoration: line-through;
+		color: #acacac;
+		background: #f4f4f4;
+	}
 `;
 
 const Task = ({ value, inputNo, removeTask }) => {
