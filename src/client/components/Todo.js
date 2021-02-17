@@ -43,6 +43,14 @@ class Todo extends Component {
 		window.addEventListener('keyup', (e) => {
 			if (e.key === 'Enter') createTask();
 		});
+
+		const tasks = sessionStorage.getItem('tasks');
+
+		if (tasks.length && tasks !== null) {
+			this.setState(() => ({
+				tasks: JSON.parse(tasks),
+			}));
+		}
 	}
 
 	componentWillUnmount() {
@@ -69,6 +77,12 @@ class Todo extends Component {
 				id: uuidv4(),
 				value: this.state.currentTask.trim(),
 			};
+
+			// save to session storage
+			const allTasks = [newTask, ...tasks];
+
+			sessionStorage.setItem('tasks', JSON.stringify(allTasks));
+
 			return {
 				tasks: [newTask, ...tasks],
 				editing: false,
