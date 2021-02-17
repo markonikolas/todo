@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { Icon } from '@iconify/react';
 import plusCircleOutline from '@iconify/icons-mdi/plus-circle-outline';
 import styled from '@emotion/styled';
@@ -13,13 +13,17 @@ const Button = ({ editing, toggleOverlay }) => {
 		height: '46px',
 		width: '46px',
 		cursor: 'pointer',
-		transform: editing ? 'rotateZ(45deg)' : '',
-	})
-	return ( 
+		transform: editing ? 'rotateZ(-45deg) translate(-1px, 0.25px)' : '',
+	});
+	return (
 		<ButtonWrapper>
-			<Icon icon={plusCircleOutline} style={{fontSize: '48px'}} onClick={toggleOverlay}/>
+			<Icon
+				icon={plusCircleOutline}
+				style={{ fontSize: '48px' }}
+				onClick={toggleOverlay}
+			/>
 		</ButtonWrapper>
 	);
-}
- 
+};
+
 export default Button;
