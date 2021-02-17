@@ -16,23 +16,23 @@ const HeaderWrapper = styled.header({
 	left: 0,
 	top: 0,
 	width: '100vw',
-	
+
 	// in figma, `overlay` and `hard-light` give the same effect
 	background: `url(${background})`,
 	backgroundColor: 'rgba(133, 0, 0, 0.55)',
 	backgroundBlendMode: 'overlay',
 	backgroundRepeat: 'no-repeat',
-	backgroundSize: 'cover',
-})
+	backgroundSize: 'cover'
+});
 
-
-const Header = ( { editing, toggleOverlay }) => {
-	return ( 
+const Header = ({ editing, toggleOverlay }) => {
+	return (
 		<HeaderWrapper>
 			<Button editing={editing} toggleOverlay={toggleOverlay} />
 			<Quote />
 			<TodayDate />
-		</HeaderWrapper> );
-	}
- 
+		</HeaderWrapper>
+	);
+};
+
 export default Header;

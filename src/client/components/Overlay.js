@@ -8,7 +8,7 @@ const OverlayWrapper = styled.div`
 	top: 190px;
 	bottom: 0;
 	left: 0;
-	background: rgba(37,37,37,0.4);
+	background: rgba(37, 37, 37, 0.4);
 	width: 100%;
 	display: flex;
 	align-items: flex-end;
@@ -17,7 +17,7 @@ const OverlayWrapper = styled.div`
 
 const Input = styled.input`
 	height: 56px;
-	box-shadow: 1px 1px 5px #C0C0C0;
+	box-shadow: 1px 1px 5px #c0c0c0;
 	padding-left: 40px;
 	border: 0;
 	flex: 1;
@@ -37,13 +37,18 @@ const Overlay = ({ value, whileTyping, createTask }) => {
 		height: '56px',
 		maxWidth: '40px',
 		paddingRight: '20px'
-	}
-	return ( 
+	};
+	return (
 		<OverlayWrapper>
-			<Input type="text" value={value} onChange={whileTyping} placeholder="What would you like to do?"/>
+			<Input
+				type="text"
+				value={value}
+				onChange={whileTyping}
+				placeholder="What would you like to do?"
+			/>
 			<Icon icon={sendIcon} style={iconStyle} onClick={createTask} />
 		</OverlayWrapper>
-	 );
-}
- 
+	);
+};
+
 export default Overlay;

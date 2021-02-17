@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import styled from '@emotion/styled';
+import { v4 as uuidv4 } from 'uuid';
 
 import Header from './Header';
 import Task from './Task';
 import Overlay from './Overlay';
 
-
-const Tasks = styled.article({ 
+const Tasks = styled.article({
 	padding: '40px',
 	display: 'grid',
 	gridAutoRows: '52px',
@@ -16,32 +16,33 @@ const Tasks = styled.article({
 	top: '190px',
 	width: '100%',
 	zIndex: -1,
-	'overflowY': 'scroll'
-})
+	overflowY: 'scroll',
+});
 
 class Todo extends Component {
 	constructor(props) {
-		super(props)
+		super(props);
 		this.state = {
 			tasks: [],
 			editing: false,
-			currentTask: ''
-		}
+			currentTask: '',
+		};
 
 		this.createTask = this.createTask.bind(this);
+		this.removeTask = this.removeTask.bind(this);
+
 		this.whileTyping = this.whileTyping.bind(this);
 		this.toggleOverlay = this.toggleOverlay.bind(this);
-
 	}
-	
+
 	whileTyping(e) {
 		this.setState(() => ({
-			currentTask: e.target.value
-		}))
+			currentTask: e.target.value,
+		}));
 	}
 
 	toggleOverlay() {
-		this.setState(() => ({ editing: !this.state.editing }))
+		this.setState(() => ({ editing: !this.state.editing }));
 	}
 
 	createTask() {
@@ -50,28 +51,54 @@ class Todo extends Component {
 		// it up in test function with generated regex from
 		// this.state.currentTask
 
-		if(this.state.currentTask.length < 3) return;
+		if (this.state.currentTask.length < 3) return;
 
-		this.setState(({ tasks }) => ({ 
-			tasks: [ ...tasks, this.state.currentTask ],
-			editing: false,
-			currentTask: ''
-		}))
-	} 
+		this.setState(({ tasks }) => {
+			const newTask = {
+				id: uuidv4(),
+				value: this.state.currentTask,
+			};
+			return {
+				tasks: [newTask, ...tasks],
+				editing: false,
+				currentTask: '',
+			};
+		});
+	}
 
-	render() { 
-		const { tasks, editing, currentTask, } = this.state;
-		const { whileTyping, toggleOverlay, createTask } = this;
-		
+	removeTask(e) {
+		const taskID = e.target.getAttribute('for');
+		this.setState(({ tasks }) => ({
+			tasks: tasks.filter((task) => !new RegExp(task.id).test(taskID)),
+		}));
+	}
+
+	render() {
+		const { tasks, editing, currentTask } = this.state;
+		const { whileTyping, toggleOverlay, createTask, removeTask } = this;
+
 		return (
-		<Fragment>
-			<Header editing={editing} toggleOverlay={toggleOverlay} />
-			<Tasks>
-				{ tasks.map((value, i) => <Task key={i} inputNo={i} value={value} /> ) }
-			</Tasks>
-			{ editing && <Overlay value={currentTask} whileTyping={whileTyping} createTask={createTask}/> }
-		</Fragment>
-		)
+			<Fragment>
+				<Header editing={editing} toggleOverlay={toggleOverlay} />
+				<Tasks>
+					{tasks.map((task, i) => (
+						<Task
+							key={task.id}
+							inputNo={task.id}
+							value={task.value}
+							removeTask={removeTask}
+						/>
+					))}
+				</Tasks>
+				{editing && (
+					<Overlay
+						value={currentTask}
+						whileTyping={whileTyping}
+						createTask={createTask}
+					/>
+				)}
+			</Fragment>
+		);
 	}
 }
 

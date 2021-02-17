@@ -5,6 +5,4 @@
 /tmp/**
 /node_modules/**
 
-*.js
-
 !/public/*.html
