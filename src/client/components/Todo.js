@@ -68,9 +68,16 @@ class Todo extends Component {
 
 	removeTask(e) {
 		const taskID = e.target.getAttribute('for');
-		this.setState(({ tasks }) => ({
-			tasks: tasks.filter((task) => !new RegExp(task.id).test(taskID)),
-		}));
+		const isChecked = e.target.parentElement.querySelector(`#${taskID}`)
+			.checked;
+
+		if (isChecked) {
+			this.setState(({ tasks }) => ({
+				tasks: tasks.filter(
+					(task) => !new RegExp(task.id).test(taskID)
+				),
+			}));
+		}
 	}
 
 	render() {
@@ -81,7 +88,7 @@ class Todo extends Component {
 			<Fragment>
 				<Header editing={editing} toggleOverlay={toggleOverlay} />
 				<Tasks>
-					{tasks.map((task, i) => (
+					{tasks.map((task) => (
 						<Task
 							key={task.id}
 							inputNo={task.id}

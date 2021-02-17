@@ -53,7 +53,10 @@ const Task = ({ value, inputNo, removeTask }) => {
 				id={`task-${inputNo}`}
 				hidden
 			/>
-			<TaskName htmlFor={`task-${inputNo}`} onClick={removeTask}>
+			<TaskName
+				htmlFor={`task-${inputNo}`}
+				onClick={(e) => setTimeout(() => removeTask(e), 1000)}
+			>
 				{value}
 			</TaskName>
 		</TaskWrapper>
