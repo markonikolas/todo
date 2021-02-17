@@ -44,11 +44,11 @@ class Todo extends Component {
 			if (e.key === 'Enter') createTask();
 		});
 
-		const tasks = sessionStorage.getItem('tasks');
+		const tasks = JSON.parse(sessionStorage.getItem('tasks')) || [];
 
-		if (tasks.length && tasks !== null) {
+		if (tasks.length > 0 && tasks !== null) {
 			this.setState(() => ({
-				tasks: JSON.parse(tasks),
+				tasks,
 			}));
 		}
 	}
@@ -79,9 +79,10 @@ class Todo extends Component {
 			};
 
 			// save to session storage
-			const allTasks = [newTask, ...tasks];
-
-			sessionStorage.setItem('tasks', JSON.stringify(allTasks));
+			sessionStorage.setItem(
+				'tasks',
+				JSON.stringify([newTask, ...tasks])
+			);
 
 			return {
 				tasks: [newTask, ...tasks],
@@ -96,12 +97,22 @@ class Todo extends Component {
 		const isChecked = e.target.parentElement.querySelector(`#${taskID}`)
 			.checked;
 
+		// removes clicked task from the array
+		const checkRegExp = (task) => !new RegExp(task.id).test(taskID);
+
 		if (isChecked) {
 			this.setState(({ tasks }) => ({
-				tasks: tasks.filter(
-					(task) => !new RegExp(task.id).test(taskID)
-				),
+				tasks: tasks.filter(checkRegExp),
 			}));
+
+			const tasks = sessionStorage.getItem('tasks');
+
+			const filtered = [...JSON.parse(tasks)].filter(checkRegExp);
+
+			console.log(filtered);
+
+			sessionStorage.clear();
+			sessionStorage.setItem('tasks', JSON.stringify(filtered));
 		}
 	}
 
