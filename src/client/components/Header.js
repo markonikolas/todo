@@ -22,7 +22,7 @@ const HeaderWrapper = styled.header({
 	backgroundColor: 'rgba(133, 0, 0, 0.55)',
 	backgroundBlendMode: 'overlay',
 	backgroundRepeat: 'no-repeat',
-	backgroundSize: 'cover'
+	backgroundSize: 'cover',
 });
 
 const Header = ({ editing, toggleOverlay }) => {

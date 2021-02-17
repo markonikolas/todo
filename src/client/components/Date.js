@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import styled from '@emotion/styled';
 import { Icon } from '@iconify/react';
@@ -31,4 +31,4 @@ const TodayDate = () => {
 	);
 };
 
-export default TodayDate;
+export default memo(TodayDate);

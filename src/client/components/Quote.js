@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import styled from '@emotion/styled';
 
 const QuoteWrapper = styled.p({
@@ -46,4 +46,4 @@ const Quote = () => {
 	);
 };
 
-export default Quote;
+export default memo(Quote);

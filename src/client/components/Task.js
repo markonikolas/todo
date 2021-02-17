@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styled from '@emotion/styled';
 
 import check from '../assets/icons/check-bold.svg';
@@ -68,4 +68,4 @@ const Task = ({ value, inputNo, removeTask }) => {
 	);
 };
 
-export default Task;
+export default memo(Task);

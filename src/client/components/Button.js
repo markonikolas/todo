@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Icon } from '@iconify/react';
 import plusCircleOutline from '@iconify/icons-mdi/plus-circle-outline';
 import styled from '@emotion/styled';
@@ -15,6 +15,7 @@ const Button = ({ editing, toggleOverlay }) => {
 		cursor: 'pointer',
 		transform: editing ? 'rotateZ(-45deg) translate(-1px, 0.25px)' : '',
 	});
+
 	return (
 		<ButtonWrapper>
 			<Icon
@@ -26,4 +27,4 @@ const Button = ({ editing, toggleOverlay }) => {
 	);
 };
 
-export default Button;
+export default memo(Button);

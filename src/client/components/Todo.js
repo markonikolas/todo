@@ -45,6 +45,12 @@ class Todo extends Component {
 		});
 	}
 
+	componentWillUnmount() {
+		window.removeEventListener('keyup', (e) => {
+			if (e.key === 'Enter') createTask();
+		});
+	}
+
 	whileTyping(e) {
 		this.setState(() => ({
 			currentTask: e.target.value,

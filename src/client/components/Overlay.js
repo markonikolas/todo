@@ -38,6 +38,7 @@ const Overlay = ({ value, whileTyping, createTask, checkCurrentTaskValue }) => {
 		maxWidth: '40px',
 		paddingRight: '20px',
 	};
+
 	return (
 		<OverlayWrapper>
 			<Input
