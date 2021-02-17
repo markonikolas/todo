@@ -37,6 +37,14 @@ class Todo extends Component {
 		this.checkCurrentTaskValue = this.checkCurrentTaskValue.bind(this);
 	}
 
+	componentDidMount() {
+		const { createTask } = this;
+
+		window.addEventListener('keyup', (e) => {
+			if (e.key === 'Enter') createTask();
+		});
+	}
+
 	whileTyping(e) {
 		this.setState(() => ({
 			currentTask: e.target.value,
