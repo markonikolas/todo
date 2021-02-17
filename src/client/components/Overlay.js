@@ -28,20 +28,20 @@ const Input = styled.input`
 	}
 `;
 
-const iconStyle = {
-	color: 'rgba(133, 0, 0, 0.35)',
-	background: '#FFF',
-	height: '56px',
-	flex: 1,
-	maxWidth: '40px',
-	paddingRight: '20px'
-}
-
-const Overlay = ({value, whileTyping}) => {
+const Overlay = ({ value, whileTyping, createTask }) => {
+	const iconStyle = {
+		flex: 1,
+		color: value.length > 2 ? '#850000' : 'rgba(133,0,0,0.35)',
+		cursor: 'pointer',
+		background: '#FFF',
+		height: '56px',
+		maxWidth: '40px',
+		paddingRight: '20px'
+	}
 	return ( 
 		<OverlayWrapper>
 			<Input type="text" value={value} onChange={whileTyping} placeholder="What would you like to do?"/>
-			<Icon icon={sendIcon} style={iconStyle} />
+			<Icon icon={sendIcon} style={iconStyle} onClick={createTask} />
 		</OverlayWrapper>
 	 );
 }

@@ -44,12 +44,12 @@ const Checkmark = styled.input`
 `
 
 
-const Task = ({ inputNo }) => {
+const Task = ({ value, inputNo }) => {
 	return ( 
 		<TaskWrapper>
 			{/* add custom id generation to avoid bugs on removing tasks */}
 			<Checkmark type="checkbox" name="check" id={`task-${inputNo}`} hidden />
-			<TaskName htmlFor={`task-${inputNo}`}>Lorem, ipsum dolor.</TaskName>
+			<TaskName htmlFor={`task-${inputNo}`}>{ value }</TaskName>
 		</TaskWrapper>
 	 );
 }

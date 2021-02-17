@@ -19,13 +19,6 @@ const Tasks = styled.article({
 	'overflowY': 'scroll'
 })
 
-const allTasks = [];
-
-for(let i = 0; i <= 5; i++) {
-	allTasks.push(Task)
-}
-
-
 class Todo extends Component {
 	constructor(props) {
 		super(props)
@@ -35,6 +28,7 @@ class Todo extends Component {
 			currentTask: ''
 		}
 
+		this.createTask = this.createTask.bind(this);
 		this.whileTyping = this.whileTyping.bind(this);
 		this.toggleOverlay = this.toggleOverlay.bind(this);
 
@@ -50,18 +44,32 @@ class Todo extends Component {
 		this.setState(() => ({ editing: !this.state.editing }))
 	}
 
+	createTask() {
+		// move this idea to separate function, its needed in overlay context
+		// if its less than 3 characters or empty plug
+		// it up in test function with generated regex from
+		// this.state.currentTask
+
+		if(this.state.currentTask.length < 3) return;
+
+		this.setState(({ tasks }) => ({ 
+			tasks: [ ...tasks, this.state.currentTask ],
+			editing: false,
+			currentTask: ''
+		}))
+	} 
+
 	render() { 
+		const { tasks, editing, currentTask, } = this.state;
+		const { whileTyping, toggleOverlay, createTask } = this;
+		
 		return (
 		<Fragment>
-			<Header editing={this.state.editing} toggleOverlay={this.toggleOverlay} />
+			<Header editing={editing} toggleOverlay={toggleOverlay} />
 			<Tasks>
-				{
-					allTasks.map((Task, i) => {
-						return <Task key={i} inputNo={i} />
-					})
-				}
+				{ tasks.map((value, i) => <Task key={i} inputNo={i} value={value} /> ) }
 			</Tasks>
-			{ this.state.editing && <Overlay value={this.state.currentTask} whileTyping={this.whileTyping}/> }
+			{ editing && <Overlay value={currentTask} whileTyping={whileTyping} createTask={createTask}/> }
 		</Fragment>
 		)
 	}

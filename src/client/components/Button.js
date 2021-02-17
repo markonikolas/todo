@@ -18,7 +18,7 @@ const Button = ({ editing, toggleOverlay }) => {
 	return ( 
 		<ButtonWrapper>
 			<Icon icon={plusCircleOutline} style={{fontSize: '48px'}} onClick={toggleOverlay}/>
-		</ButtonWrapper> 
+		</ButtonWrapper>
 	);
 }
  
