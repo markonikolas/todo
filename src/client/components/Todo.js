@@ -3,6 +3,8 @@ import styled from '@emotion/styled';
 
 import Header from './Header';
 import Task from './Task';
+import Overlay from './Overlay';
+
 
 const Tasks = styled.article({ 
 	padding: '40px',
@@ -14,7 +16,7 @@ const Tasks = styled.article({
 	top: '190px',
 	width: '100%',
 	zIndex: -1,
-	'overflow-y': 'scroll'
+	'overflowY': 'scroll'
 })
 
 const allTasks = [];
@@ -25,11 +27,23 @@ for(let i = 0; i <= 5; i++) {
 
 
 class Todo extends Component {
-	state = {
-		tasks: [],
-		editing: false,
-		currentTask: ''
+	constructor(props) {
+		super(props)
+		this.state = {
+			tasks: [],
+			editing: false,
+			currentTask: ''
+		}
+		
+		this.whileTyping = this.whileTyping.bind(this);
 	}
+	
+	whileTyping(e) {
+		this.setState(() => ({
+			currentTask: e.target.value
+		}))
+	}
+
 	render() { 
 		return (
 		<Fragment>
@@ -41,6 +55,7 @@ class Todo extends Component {
 					})
 				}
 			</Tasks>
+			<Overlay value={this.state.currentTask} whileTyping={this.whileTyping}/>
 		</Fragment>
 		)
 	}
