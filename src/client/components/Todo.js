@@ -34,8 +34,10 @@ class Todo extends Component {
 			editing: false,
 			currentTask: ''
 		}
-		
+
 		this.whileTyping = this.whileTyping.bind(this);
+		this.toggleOverlay = this.toggleOverlay.bind(this);
+
 	}
 	
 	whileTyping(e) {
@@ -44,10 +46,14 @@ class Todo extends Component {
 		}))
 	}
 
+	toggleOverlay() {
+		this.setState(() => ({ editing: !this.state.editing }))
+	}
+
 	render() { 
 		return (
 		<Fragment>
-			<Header />
+			<Header editing={this.state.editing} toggleOverlay={this.toggleOverlay} />
 			<Tasks>
 				{
 					allTasks.map((Task, i) => {
@@ -55,7 +61,7 @@ class Todo extends Component {
 					})
 				}
 			</Tasks>
-			<Overlay value={this.state.currentTask} whileTyping={this.whileTyping}/>
+			{ this.state.editing && <Overlay value={this.state.currentTask} whileTyping={this.whileTyping}/> }
 		</Fragment>
 		)
 	}

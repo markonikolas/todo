@@ -26,10 +26,10 @@ const HeaderWrapper = styled.header({
 })
 
 
-const Header = () => {
+const Header = ( { editing, toggleOverlay }) => {
 	return ( 
 		<HeaderWrapper>
-			<Button />
+			<Button editing={editing} toggleOverlay={toggleOverlay} />
 			<Quote />
 			<TodayDate />
 		</HeaderWrapper> );
