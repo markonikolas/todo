@@ -28,15 +28,15 @@ const Input = styled.input`
 	}
 `;
 
-const Overlay = ({ value, whileTyping, createTask }) => {
+const Overlay = ({ value, whileTyping, createTask, checkCurrentTaskValue }) => {
 	const iconStyle = {
 		flex: 1,
-		color: value.length > 2 ? '#850000' : 'rgba(133,0,0,0.35)',
+		color: !checkCurrentTaskValue() ? '#850000' : 'rgba(133,0,0,0.35)',
 		cursor: 'pointer',
 		background: '#FFF',
 		height: '56px',
 		maxWidth: '40px',
-		paddingRight: '20px'
+		paddingRight: '20px',
 	};
 	return (
 		<OverlayWrapper>

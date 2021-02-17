@@ -33,6 +33,8 @@ class Todo extends Component {
 
 		this.whileTyping = this.whileTyping.bind(this);
 		this.toggleOverlay = this.toggleOverlay.bind(this);
+
+		this.checkCurrentTaskValue = this.checkCurrentTaskValue.bind(this);
 	}
 
 	whileTyping(e) {
@@ -46,17 +48,12 @@ class Todo extends Component {
 	}
 
 	createTask() {
-		// move this idea to separate function, its needed in overlay context
-		// if its less than 3 characters or empty plug
-		// it up in test function with generated regex from
-		// this.state.currentTask
-
-		if (this.state.currentTask.length < 3) return;
+		if (this.checkCurrentTaskValue()) return;
 
 		this.setState(({ tasks }) => {
 			const newTask = {
 				id: uuidv4(),
-				value: this.state.currentTask,
+				value: this.state.currentTask.trim(),
 			};
 			return {
 				tasks: [newTask, ...tasks],
@@ -80,9 +77,20 @@ class Todo extends Component {
 		}
 	}
 
+	checkCurrentTaskValue() {
+		const regex = /^\s*$/gi;
+		return regex.test(this.state.currentTask);
+	}
+
 	render() {
 		const { tasks, editing, currentTask } = this.state;
-		const { whileTyping, toggleOverlay, createTask, removeTask } = this;
+		const {
+			whileTyping,
+			toggleOverlay,
+			createTask,
+			removeTask,
+			checkCurrentTaskValue,
+		} = this;
 
 		return (
 			<Fragment>
@@ -102,6 +110,7 @@ class Todo extends Component {
 						value={currentTask}
 						whileTyping={whileTyping}
 						createTask={createTask}
+						checkCurrentTaskValue={checkCurrentTaskValue}
 					/>
 				)}
 			</Fragment>

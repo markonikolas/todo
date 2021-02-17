@@ -52,7 +52,6 @@ const Checkmark = styled.input`
 const Task = ({ value, inputNo, removeTask }) => {
 	return (
 		<TaskWrapper>
-			{/* add custom id generation to avoid bugs on removing tasks */}
 			<Checkmark
 				type="checkbox"
 				name="check"
